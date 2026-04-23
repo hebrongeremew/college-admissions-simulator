@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admission Probability Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="header-content">
+                <h1>🎓 College Admission Simulator</h1>
+                <p>Estimate your admission chances based on your academic profile and achievements</p>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <div class="form-container">
+                <form id="admission-form">
+
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-icon">📚</span>
+                            <h2>Academic Profile</h2>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>SAT Score</label>
+                                <div class="range-input">
+                                    <input type="range" id="sat" min="400" max="1600" step="10" value="1200">
+                                    <span class="range-value" id="sat-value">1200</span>
+                                </div>
+                                <div class="range-labels">
+                                    <span>400</span><span>800</span><span>1200</span><span>1600</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>GPA (4.0 scale)</label>
+                                <div class="range-input">
+                                    <input type="range" id="gpa" min="0" max="4.0" step="0.01" value="3.0">
+                                    <span class="range-value" id="gpa-value">3.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Class Rank (Percentile)</label>
+                                <div class="range-input">
+                                    <input type="range" id="class-rank" min="0" max="100" step="1" value="50">
+                                    <span class="range-value" id="rank-value">50th</span>
+                                </div>
+                                <div class="range-labels">
+                                    <span>Bottom</span><span>Average</span><span>Top 25%</span><span>Top 10%</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Course Rigor</label>
+                                <div class="range-input">
+                                    <input type="range" id="rigor" min="1" max="10" step="1" value="5">
+                                    <span class="range-value" id="rigor-value">5/10</span>
+                                </div>
+                                <div class="rigor-labels">
+                                    <span>Few AP/IB</span><span>Some Honors</span><span>Many AP/IB</span><span>Maximum Rigor</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Intended Major</label>
+                            <select id="major">
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Business">Business</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Psychology">Psychology</option>
+                                <option value="Political Science">Political Science</option>
+                                <option value="English">English</option>
+                                <option value="History">History</option>
+                                <option value="Fine Arts">Fine Arts</option>
+                                <option value="Undecided">Undecided</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-icon">👤</span>
+                            <h2>Background Information</h2>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="legacy">
+                                <span>Legacy Status (Parent/Sibling attended the college)</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="first-gen">
+                                <span>First-Generation College Student</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="underrepresented">
+                                <span>Underrepresented Minority</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="athlete">
+                                <span>Recruited Athlete</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="faculty-child">
+                                <span>Child of Faculty/Staff</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-icon">⚡</span>
+                            <h2>Extracurricular Activities</h2>
+                            <button type="button" class="add-btn" id="add-activity">+ Add Activity</button>
+                        </div>
+                        <div id="activities-container">
+                            <div class="activity-card">
+                                <select class="activity-category">
+                                    <option value="Leadership">Leadership</option>
+                                    <option value="Academic">Academic</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Arts">Arts</option>
+                                    <option value="Volunteering">Volunteering</option>
+                                    <option value="Research">Research</option>
+                                    <option value="Clubs">Clubs</option>
+                                </select>
+                                <div class="activity-details">
+                                    <input type="number" class="activity-years" placeholder="Years" min="0" max="4" step="1">
+                                    <input type="number" class="activity-hours" placeholder="Hours/week" min="0" max="40" step="1">
+                                </div>
+                                <button type="button" class="remove-btn">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-icon">🏆</span>
+                            <h2>Awards & Honors</h2>
+                            <button type="button" class="add-btn" id="add-award">+ Add Award</button>
+                        </div>
+                        <div id="awards-container">
+                            <div class="award-card">
+                                <select class="award-level">
+                                    <option value="local">🏅 Local</option>
+                                    <option value="regional">🏆 Regional</option>
+                                    <option value="national">🇺🇸 National</option>
+                                    <option value="international">🌍 International</option>
+                                </select>
+                                <button type="button" class="remove-btn">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-icon">🎯</span>
+                            <h2>Select Colleges</h2>
+                        </div>
+                        <div class="college-controls">
+                            <button type="button" id="select-all" class="secondary-btn">Select All</button>
+                            <button type="button" id="select-none" class="secondary-btn">Clear All</button>
+                        </div>
+                        <div class="colleges-grid" id="colleges-grid">
+                            <label class="college-checkbox"><input type="checkbox" value="Harvard University"><span>Harvard University</span></label>
+                            <label class="college-checkbox"><input type="checkbox" value="Stanford University"><span>Stanford University</span></label>
+                            <label class="college-checkbox"><input type="checkbox" value="MIT"><span>MIT</span></label>
+                            <label class="college-checkbox"><input type="checkbox" value="Yale University"><span>Yale University</span></label>
+                            <label class="college-checkbox"><input type="checkbox" value="Princeton University"><span>Princeton University</span></label>
+                            <label class="college-checkbox"><input type="checkbox" value="University of California, Berkeley"><span>UC Berkeley</span></label>
+                            <label class="college-checkbox"><input type="checkbox" value="University of Michigan"><span>University of Michigan</span></label>
+                            <label class="college-checkbox"><input type="checkbox" value="University of Virginia"><span>University of Virginia</span></label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Calculate Admission Probability 🚀</button>
+                </form>
+            </div>
+
+            <div class="results-container" id="results-container" style="display: none;">
+                <div class="results-header">
+                    <h2>📊 Your Admission Chances</h2>
+                    <div class="student-badge" id="student-badge"></div>
+                </div>
+                <div id="results-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
