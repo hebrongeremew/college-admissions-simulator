@@ -8,7 +8,16 @@ EXTRACURRICULAR_WEIGHTS = {
     "Music": 2, "Arts": 2, "Volunteering": 2,
     "Research": 3, "Clubs": 1
 }
-
+CATEGORY_MAP = {
+    "Leadership": "leadership",
+    "Academic": "academic",
+    "Sports": "sports",
+    "Music": "music",
+    "Arts": "arts",
+    "Volunteering": "volunteering",
+    "Research": "research",
+    "Clubs": "clubs"
+}
 AWARD_WEIGHTS = {
     "local": 1, "regional": 2, "national": 3, "international": 4
 }
@@ -21,7 +30,17 @@ def calculate_admission_chance(student_data, college_name):
     major_category = get_major_category(student_data.get('major', 'Undecided'))
     weights = college['major_weights'][major_category]
 
-    sat_percentile = (student_data['sat'] - 400) / 1200
+    sat_math = student_data.get('sat_math', student_data['sat'] / 2)
+    sat_rw = student_data.get('sat_rw', student_data['sat'] / 2)
+    
+    sat_math_score = sat_math / 800
+    sat_rw_score = sat_rw / 800
+    
+    sat_percentile = (
+        sat_math_score * college.get('sat_math_weight', 0.5) +
+        sat_rw_score * college.get('sat_rw_weight', 0.5)
+    )
+    
     gpa_percentile = student_data['gpa'] / 4.0
     rank_percentile = student_data['class_rank'] / 100
     rigor_score = student_data['rigor'] / 10
@@ -36,10 +55,17 @@ def calculate_admission_chance(student_data, college_name):
     extracurricular_score = 0
     for activity in student_data['extracurriculars']:
         if activity.get('years') and activity.get('hours'):
-            category_weight = EXTRACURRICULAR_WEIGHTS.get(activity['category'], 1)
+            base_weight = EXTRACURRICULAR_WEIGHTS.get(activity['category'], 1)
+
+            mapped_category = CATEGORY_MAP.get(activity['category'], "").lower()
+            pref_multiplier = college.get('preferences', {}).get(mapped_category, 1)
+            
+            category_weight = base_weight * pref_multiplier
+            
             years_factor = min(activity['years'] / 4, 1)
             hours_factor = min(activity['hours'] / 20, 1)
             extracurricular_score += category_weight * (years_factor + hours_factor) / 2
+    
     extracurricular_score = min(extracurricular_score / 10, 1)
 
     awards_score = 0
