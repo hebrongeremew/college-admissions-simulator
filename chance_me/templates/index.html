@@ -27,59 +27,93 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>SAT Score</label>
+                                <div class="tooltip">
+                                    <label for="sat-math">SAT Math</label>
+                                    <span class="tooltip-text">Many STEM and business programs rely on SAT Math to assess quantitative readiness.</span>
+                                </div>
                                 <div class="range-input">
-                                    <input type="range" id="sat" min="400" max="1600" step="10" value="1200">
-                                    <span class="range-value" id="sat-value">1200</span>
+                                    <input type="range" id="sat-math" name="sat_math" min="0" max="800" step="10" value="0">
+                                    <span class="range-value" id="sat-math-value">0</span>
                                 </div>
                                 <div class="range-labels">
-                                    <span>400</span><span>800</span><span>1200</span><span>1600</span>
+                                    <span>0</span><span>200</span><span>400</span><span>800</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>GPA (4.0 scale)</label>
+                                <div class="tooltip">
+                                    <label for="sat-rw">SAT Reading & Writing</label>
+                                    <span class="tooltip-text">Reading/Writing scores show how well you understand complex texts and communicate clearly.</span>
+                                </div>
                                 <div class="range-input">
-                                    <input type="range" id="gpa" min="0" max="4.0" step="0.01" value="3.0">
-                                    <span class="range-value" id="gpa-value">3.00</span>
+                                    <input type="range" id="sat-rw" name="sat_rw" min="0" max="800" step="10" value="0">
+                                    <span class="range-value" id="sat-rw-value">0</span>
+                                </div>
+                                <div class="range-labels">
+                                    <span>0</span><span>200</span><span>400</span><span>800</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Class Rank (Percentile)</label>
-                                <div class="range-input">
-                                    <input type="range" id="class-rank" min="0" max="100" step="1" value="50">
-                                    <span class="range-value" id="rank-value">50th</span>
-                                </div>
-                                <div class="range-labels">
-                                    <span>Bottom</span><span>Average</span><span>Top 25%</span><span>Top 10%</span>
-                                </div>
+
+                        <div class="form-group">
+                            <div class="tooltip">
+                                <label for="act">ACT Composite</label>
+                                <span class="tooltip-text">If you are submitting ACT scores instead of SAT, enter your composite ACT score here.</span>
                             </div>
-                            <div class="form-group">
-                                <label>Course Rigor</label>
-                                <div class="range-input">
-                                    <input type="range" id="rigor" min="1" max="10" step="1" value="5">
-                                    <span class="range-value" id="rigor-value">5/10</span>
-                                </div>
-                                <div class="rigor-labels">
-                                    <span>Few AP/IB</span><span>Some Honors</span><span>Many AP/IB</span><span>Maximum Rigor</span>
-                                </div>
+                            <div class="range-input">
+                                <input type="range" id="act" name="act" min="0" max="36" step="1" value="0">
+                                <span class="range-value" id="act-value">0</span>
+                            </div>
+                            <div class="range-labels">
+                                <span>0</span><span>12</span><span>24</span><span>36</span>
+                            </div>
+                            <p class="field-note">Leave ACT at 0 to use SAT inputs, or leave SAT at 0 to use ACT.</p>
+                        </div>
+                        <div class="form-group">
+                            <div class="tooltip">
+                                <label for="gpa">GPA (4.0 scale)</label>
+                                <span class="tooltip-text">GPA reflects your sustained academic performance over time.</span>
+                            </div>
+                            <div class="range-input">
+                                <input type="range" id="gpa" name="gpa" min="0" max="4.0" step="0.01" value="3.0">
+                                <span class="range-value" id="gpa-value">3.00</span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Intended Major</label>
-                            <select id="major">
-                                <option value="Computer Science">Computer Science</option>
-                                <option value="Engineering">Engineering</option>
-                                <option value="Biology">Biology</option>
-                                <option value="Business">Business</option>
-                                <option value="Economics">Economics</option>
-                                <option value="Psychology">Psychology</option>
-                                <option value="Political Science">Political Science</option>
-                                <option value="English">English</option>
-                                <option value="History">History</option>
-                                <option value="Fine Arts">Fine Arts</option>
+                            <div class="tooltip">
+                                <label for="class-rank">Class Rank (Percentile)</label>
+                                <span class="tooltip-text">Class rank shows how you compare to peers within your school.</span>
+                            </div>
+                            <div class="range-input">
+                                <input type="range" id="class-rank" name="class_rank" min="0" max="100" step="1" value="50">
+                                <span class="range-value" id="class-rank-value">50th</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="tooltip">
+                                <label for="rigor">Course Rigor</label>
+                                <span class="tooltip-text">Higher course rigor signals that you are prepared for college-level academics.</span>
+                            </div>
+                            <div class="range-input">
+                                <input type="range" id="rigor" name="rigor" min="1" max="10" step="1" value="5">
+                                <span class="range-value" id="rigor-value">5/10</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="tooltip">
+                                <label for="major">Intended Major</label>
+                                <span class="tooltip-text">Different majors have different levels of selectivity and preparation requirements.</span>
+                            </div>
+                            <select id="major" name="major">
                                 <option value="Undecided">Undecided</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Sciences">Sciences</option>
+                                <option value="Math">Math</option>
+                                <option value="Humanities">Humanities</option>
+                                <option value="Social Sciences">Social Sciences</option>
+                                <option value="Business">Business</option>
+                                <option value="Arts">Arts</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Health">Health</option>
                             </select>
                         </div>
                     </div>
@@ -90,25 +124,30 @@
                             <h2>Background Information</h2>
                         </div>
                         <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="legacy">
-                                <span>Legacy Status (Parent/Sibling attended the college)</span>
+                            <label class="checkbox-label tooltip">
+                                <input type="checkbox" id="legacy" name="legacy">
+                                <span>Legacy Status</span>
+                                <span class="tooltip-text">Legacy applicants may get a small advantage at schools that weigh alumni connections.</span>
                             </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="first-gen">
+                            <label class="checkbox-label tooltip">
+                                <input type="checkbox" id="first-gen" name="first_gen">
                                 <span>First-Generation College Student</span>
+                                <span class="tooltip-text">First-generation status can help colleges build a more diverse, supportive class.</span>
                             </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="underrepresented">
+                            <label class="checkbox-label tooltip">
+                                <input type="checkbox" id="underrepresented" name="underrepresented">
                                 <span>Underrepresented Minority</span>
+                                <span class="tooltip-text">Underrepresented applicants may receive additional consideration as colleges seek diversity.</span>
                             </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="athlete">
+                            <label class="checkbox-label tooltip">
+                                <input type="checkbox" id="athlete" name="athlete">
                                 <span>Recruited Athlete</span>
+                                <span class="tooltip-text">Recruited athletes can have stronger chances at schools looking for sports talent.</span>
                             </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="faculty-child">
+                            <label class="checkbox-label tooltip">
+                                <input type="checkbox" id="faculty-child" name="faculty_child">
                                 <span>Child of Faculty/Staff</span>
+                                <span class="tooltip-text">Children of faculty or staff may receive preference at some colleges.</span>
                             </label>
                         </div>
                     </div>
@@ -169,14 +208,39 @@
                             <button type="button" id="select-none" class="secondary-btn">Clear All</button>
                         </div>
                         <div class="colleges-grid" id="colleges-grid">
-                            <label class="college-checkbox"><input type="checkbox" value="Harvard University"><span>Harvard University</span></label>
-                            <label class="college-checkbox"><input type="checkbox" value="Stanford University"><span>Stanford University</span></label>
-                            <label class="college-checkbox"><input type="checkbox" value="MIT"><span>MIT</span></label>
-                            <label class="college-checkbox"><input type="checkbox" value="Yale University"><span>Yale University</span></label>
-                            <label class="college-checkbox"><input type="checkbox" value="Princeton University"><span>Princeton University</span></label>
-                            <label class="college-checkbox"><input type="checkbox" value="University of California, Berkeley"><span>UC Berkeley</span></label>
-                            <label class="college-checkbox"><input type="checkbox" value="University of Michigan"><span>University of Michigan</span></label>
-                            <label class="college-checkbox"><input type="checkbox" value="University of Virginia"><span>University of Virginia</span></label>
+                            <!-- IVY LEAGUE SCHOOLS (All 8 from your database) -->
+                            <div class="college-category">
+                                <h3>🏛️ Ivy League</h3>
+                                <div class="category-grid">
+                                    <label class="college-checkbox"><input type="checkbox" value="Harvard University"><span>Harvard University</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="Yale University"><span>Yale University</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="Princeton University"><span>Princeton University</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="Columbia University"><span>Columbia University</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="University of Pennsylvania"><span>University of Pennsylvania</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="Brown University"><span>Brown University</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="Dartmouth College"><span>Dartmouth College</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="Cornell University"><span>Cornell University</span></label>
+                                </div>
+                            </div>
+                            
+                            <!-- TOP TIER UNIVERSITIES (Matching your database) -->
+                            <div class="college-category">
+                                <h3>⭐ Top Tier Universities</h3>
+                                <div class="category-grid">
+                                    <label class="college-checkbox"><input type="checkbox" value="Stanford University"><span>Stanford University</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="MIT"><span>MIT</span></label>
+                                </div>
+                            </div>
+                            
+                            <!-- TOP PUBLIC UNIVERSITIES (Matching your database) -->
+                            <div class="college-category">
+                                <h3>🏆 Top Public Universities</h3>
+                                <div class="category-grid">
+                                    <label class="college-checkbox"><input type="checkbox" value="University of California, Berkeley"><span>UC Berkeley</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="University of Michigan"><span>University of Michigan</span></label>
+                                    <label class="college-checkbox"><input type="checkbox" value="University of Virginia"><span>University of Virginia</span></label>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -193,6 +257,86 @@
             </div>
         </div>
     </div>
+
+    <style>
+        /* Additional styles for college categories */
+        .colleges-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .college-category {
+            border-top: 1px solid var(--border-color, #e2e8f0);
+            padding-top: 1rem;
+        }
+        
+        .college-category:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+        
+        .college-category h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary, #4a5568);
+            letter-spacing: 0.5px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+
+    <style>
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            cursor: help;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 240px;
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            color: #f8fafc;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 0.75rem;
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.16);
+            font-size: 0.85rem;
+            line-height: 1.4;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+            transform: translateY(0.25rem);
+            z-index: 20;
+        }
+        .tooltip:hover .tooltip-text,
+        .tooltip:focus-within .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .field-note {
+            margin: 0.75rem 0 1rem;
+            color: #475569;
+            font-size: 0.9rem;
+        }
+    </style>
 
     <script src="/static/script.js"></script>
 </body>
