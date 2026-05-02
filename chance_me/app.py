@@ -31,19 +31,26 @@ AWARD_WEIGHTS = {
 # Even a "perfect" applicant cannot exceed these — they reflect the hard ceiling
 # imposed by class size, yield management, and sheer competition.
 REALISTIC_MAX_CHANCE = {
-    "Harvard University":                 12.0,
-    "Stanford University":                10.0,
-    "MIT":                                14.0,
-    "Yale University":                    12.0,
-    "Princeton University":               11.0,
-    "Columbia University":                11.0,
-    "University of Pennsylvania":         16.0,
-    "Brown University":                   16.0,
-    "Dartmouth College":                  15.0,
-    "Cornell University":                 22.0,
-    "University of California, Berkeley": 40.0,
-    "University of Michigan":             45.0,
-    "University of Virginia":             50.0,
+    "Harvard University": 65.0,
+    "Stanford University": 65.0,
+    "MIT": 65.0,
+    "Yale University": 65.0,
+    "Princeton University": 65.0,
+    "Columbia University": 65.0,
+    "University of Pennsylvania": 70.0,
+    "Brown University": 70.0,
+    "Dartmouth College": 70.0,
+    "Cornell University": 75.0,
+    "University of Chicago": 65.0,
+    "Duke University": 70.0,
+    "Northwestern University": 70.0,
+    "California Institute of Technology": 65.0,
+    "Johns Hopkins University": 70.0,
+    "Rice University": 75.0,
+    "Vanderbilt University": 75.0,
+    "University of California, Berkeley": 80.0,
+    "University of Michigan": 85.0,
+    "University of Virginia": 85.0,
 }
 
 # How harshly selectivity compresses scores for elite schools.
@@ -204,9 +211,47 @@ def calculate_admission_chance(student_data, college_name):
         awards_score * weights['misc_weight']
     ) / total_weight
 
-    # Apply college-specific selectivity compression
-    compression = SELECTIVITY_COMPRESSION.get(college_name, 0.90)
-    final_chance = base_chance * 100 * (1 - compression)
+    # Academic gate: penalize applicants below the school's academic profile
+    avg_sat = college.get("avg_sat")
+    avg_gpa = college.get("avg_gpa")
+    
+    sat_ratio = total_sat / avg_sat if total_sat > 0 else 0
+    gpa_ratio = student_data["gpa"] / avg_gpa if avg_gpa > 0 else 0
+    
+    academic_gate = 1.0
+    
+    # SAT penalties
+    if sat_ratio < 0.85:
+        academic_gate *= 0.20
+    elif sat_ratio < 0.90:
+        academic_gate *= 0.35
+    elif sat_ratio < 0.95:
+        academic_gate *= 0.60
+    elif sat_ratio < 0.98:
+        academic_gate *= 0.80
+    
+    # GPA penalties
+    if gpa_ratio < 0.80:
+        academic_gate *= 0.15
+    elif gpa_ratio < 0.85:
+        academic_gate *= 0.25
+    elif gpa_ratio < 0.90:
+        academic_gate *= 0.40
+    elif gpa_ratio < 0.95:
+        academic_gate *= 0.65
+    elif gpa_ratio < 0.98:
+        academic_gate *= 0.80
+    
+    base_chance *= academic_gate
+    
+    # Convert the college's selectivity into a baseline acceptance percentage
+    selectivity = college.get("selectivity", 0.10)
+    baseline_chance = selectivity * 100
+    
+    # Stronger applicants rise above the baseline rate
+    strength_multiplier = 1 + (base_chance * 5.0)
+    
+    final_chance = baseline_chance * strength_multiplier
 
     # Background factor boosts
     background_boost = 1.0
