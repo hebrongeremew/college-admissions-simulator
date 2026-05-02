@@ -51,26 +51,11 @@ REALISTIC_MAX_CHANCE = {
     "University of California, Berkeley": 80.0,
     "University of Michigan": 85.0,
     "University of Virginia": 85.0,
+    "University of California: Los Angeles": 80.0,
+    "Carnegie Mellon University": 80.0,
+    "University of Notre Dame": 80.0,
+    "Washington University in St. Louis": 80.0
 }
-
-# How harshly selectivity compresses scores for elite schools.
-# Higher = more brutal compression even for strong applicants.
-SELECTIVITY_COMPRESSION = {
-    "Harvard University":                 0.970,
-    "Stanford University":                0.972,
-    "MIT":                                0.965,
-    "Yale University":                    0.970,
-    "Princeton University":               0.970,
-    "Columbia University":                0.970,
-    "University of Pennsylvania":         0.960,
-    "Brown University":                   0.960,
-    "Dartmouth College":                  0.962,
-    "Cornell University":                 0.940,
-    "University of California, Berkeley": 0.880,
-    "University of Michigan":             0.850,
-    "University of Virginia":             0.830,
-}
-
 
 def calculate_admission_chance(student_data, college_name):
     if college_name not in COLLEGES:
