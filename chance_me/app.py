@@ -212,10 +212,14 @@ def calculate_admission_chance(student_data, college_name):
     ) / total_weight
 
     # Academic gate: penalize applicants below the school's academic profile
-    avg_sat = college.get("avg_sat")
-    avg_gpa = college.get("avg_gpa")
+    avg_sat = college.get("avg_sat_math", 0) + college.get("avg_sat_rw", 0)
+    avg_gpa = college.get("avg_gpa", 3.0)
     
-    sat_ratio = total_sat / avg_sat if total_sat > 0 else 0
+    if avg_sat > 0 and total_sat > 0:
+        sat_ratio = total_sat / avg_sat
+    else:
+        sat_ratio = 1.0  # no SAT penalty for test-blind/test-free schools
+    
     gpa_ratio = student_data["gpa"] / avg_gpa if avg_gpa > 0 else 0
     
     academic_gate = 1.0
