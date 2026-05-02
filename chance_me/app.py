@@ -91,7 +91,15 @@ def calculate_admission_chance(student_data, college_name):
     if exam_mode is None:
         exam_percentile = 0.10  # No scores = very weak signal for selective schools
 
-    avg_sat = college.get('avg_sat', 1200)
+    raw_avg_sat = college.get('avg_sat')
+
+    if raw_avg_sat is None:
+        raw_avg_sat = college.get('avg_sat_math', 0) + college.get('avg_sat_rw', 0)
+    
+    if raw_avg_sat > 0:
+        avg_sat = raw_avg_sat
+    else:
+        avg_sat = None  # test-blind / no SAT data
 
     if exam_mode == 'sat':
         exam_quality = 1 - max(0.0, min(1.0, (avg_sat - total_sat) / 400))
