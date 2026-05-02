@@ -282,7 +282,16 @@ def identify_strengths_weaknesses(student_data, college_name):
         sat_rw = student_data.get('sat_rw', 0)
         act = student_data.get('act', 0)
         total_sat = sat_math + sat_rw
-        avg_sat = college.get('avg_sat', 1200)
+        
+        raw_avg_sat = college.get('avg_sat')
+
+        if raw_avg_sat is None:
+            raw_avg_sat = college.get('avg_sat_math', 0) + college.get('avg_sat_rw', 0)
+        
+        if raw_avg_sat > 0:
+            avg_sat = raw_avg_sat
+        else:
+            avg_sat = None
 
         if act > 0:
             avg_act_equivalent = avg_sat / 1600 * 36
@@ -290,7 +299,7 @@ def identify_strengths_weaknesses(student_data, college_name):
                 strengths.append(f"ACT score ({act}) meets or exceeds {college_name}'s average equivalent ({avg_act_equivalent:.0f})")
             else:
                 weaknesses.append(f"ACT score ({act}) is below {college_name}'s average equivalent ({avg_act_equivalent:.0f})")
-        elif total_sat > 0:
+        elif total_sat and avg_sat> 0:
             if total_sat >= avg_sat:
                 strengths.append(f"SAT total ({total_sat}) meets or exceeds {college_name} average ({avg_sat})")
             else:
