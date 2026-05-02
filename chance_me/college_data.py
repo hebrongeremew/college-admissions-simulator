@@ -160,8 +160,8 @@ COLLEGES = {
             "Pre-Med/Health": {"academic_weight": 0.65, "activity_weight": 0.2, "misc_weight": 0.15},
             "Undecided": {"academic_weight": 0.55, "activity_weight": 0.25, "misc_weight": 0.2}
         },
-        "sat_math_weight": 0.55,
-        "sat_rw_weight": 0.45,
+        "sat_math_weight": 0,
+        "sat_rw_weight": 0,
         "preferences": {
             "research": 1.20,
             "academic": 1.15,
@@ -499,8 +499,8 @@ COLLEGES = {
             "Pre-Med/Health": {"academic_weight": 0.6, "activity_weight": 0.25, "misc_weight": 0.15},
             "Undecided": {"academic_weight": 0.5, "activity_weight": 0.3, "misc_weight": 0.2}
         },
-        "sat_math_weight": 0.50,
-        "sat_rw_weight": 0.50,
+        "sat_math_weight": 0,
+        "sat_rw_weight": 0,
         "preferences": {
             "leadership": 1.25,
             "volunteering": 1.20,
