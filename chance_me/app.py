@@ -50,7 +50,6 @@ REALISTIC_MAX_CHANCE = {
     "Vanderbilt University": 75.0,
     "University of California, Berkeley": 80.0,
     "University of Michigan": 85.0,
-    "University of Virginia": 85.0,
     "University of California: Los Angeles": 80.0,
     "Carnegie Mellon University": 80.0,
     "University of Notre Dame": 80.0,
