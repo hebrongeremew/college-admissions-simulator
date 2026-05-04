@@ -10,8 +10,8 @@ college-admissions-simulator/
 ├── data/                # University database and datasets
 ├── tests/               # Unit and integration tests
 ├── requirements.txt     # Python dependencies
-├── app.py             # Application entry point
-└── README.md           # Project documentation
+├── app.py               # Application entry point
+└── README.md            # Project documentation
 ```
 
 ## File Organization
@@ -77,7 +77,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## External Contributers
 
-- data for colleges
+- Data for colleges
     - https://www.usnews.com/best-colleges/rankings/national-universities?myCollege=national-universities&_sort=myCollege&_sortDirection=asc 
 
     - https://www.zenithprepacademy.com/college-admissions/#princeton
