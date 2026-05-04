@@ -10,7 +10,7 @@ college-admissions-simulator/
 ├── data/                # University database and datasets
 ├── tests/               # Unit and integration tests
 ├── requirements.txt     # Python dependencies
-├── main.py             # Application entry point
+├── app.py             # Application entry point
 └── README.md           # Project documentation
 ```
 
@@ -66,10 +66,14 @@ python main.py
 - Merge errors (Git conflicts)
   If you see the following lines, delete them:
 
-     ```<<<<<<< HEAD OR
-     =======  OR
-     >>>>>>> branch-name
-     ```
+    ```<<<<<<< HEAD
+    ```
+    OR
+    ``` >>>>>>> branch-name
+    ```
+    OR
+    ``` =======
+    ```
 
     
    
