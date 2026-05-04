@@ -358,8 +358,7 @@ COLLEGES = {
         "preferences": {
             "leadership": 1.25,
             "sports": 1.20,
-            "research": 1.15,
-            "community": 1.15
+            "research": 1.15
         }
     },
     "Northwestern University": {
@@ -404,7 +403,7 @@ COLLEGES = {
         "sat_rw_weight": 0.30,
         "preferences": {
             "research": 1.35,
-            "academic": 1.30,
+            "academic": 1.30
         }
     },
     "Johns Hopkins University": {
@@ -470,8 +469,7 @@ COLLEGES = {
         "sat_rw_weight": 0.50,
         "preferences": {
             "leadership": 1.25,
-            "volunteering": 1.20,
-            "community": 1.20
+            "volunteering": 1.20
         }
     },
     "University of California, Los Angeles": {
@@ -493,7 +491,7 @@ COLLEGES = {
         "sat_rw_weight": 0,
         "preferences": {
             "leadership": 1.25,
-            "volunteering": 1.20,
+            "sports": 1.20,
         }
     },
     "Carnegie Mellon University": {
@@ -515,7 +513,7 @@ COLLEGES = {
         "sat_rw_weight": 0.50,
         "preferences": {
             "leadership": 1.25,
-            "volunteering": 1.20,
+            "research": 1.20
         }
     },
     "University of Notre Dame": {
@@ -536,8 +534,8 @@ COLLEGES = {
         "sat_math_weight": 0.50,
         "sat_rw_weight": 0.50,
         "preferences": {
-            "leadership": 1.25,
-            "volunteering": 1.20,
+            "leadership": 1.20,
+            "volunteering": 1.25
         }
     },
     "Washington University in St. Louis": {
@@ -558,8 +556,7 @@ COLLEGES = {
         "sat_math_weight": 0.50,
         "sat_rw_weight": 0.50,
         "preferences": {
-            "leadership": 1.25,
-            "volunteering": 1.20,
+            "leadership": 1.25
         }
     }
 }
