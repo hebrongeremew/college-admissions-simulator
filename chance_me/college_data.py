@@ -639,8 +639,6 @@ COLLEGES = {
             "community": 1.20
         }
     },
-    "University of California: Los Angeles": {
-
     "University of Chicago": {
         "avg_sat": 1520,
         "avg_gpa": 3.95,
