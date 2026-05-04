@@ -20,7 +20,9 @@ college-admissions-simulator/
 - **data/** - University profiles, admission statistics, and reference data
 - **tests/** - Test suites for application functionality
 - **requirements.txt** - Project dependencies and versions
-- **main.py** - Application launcher
+- **app.py** - Application launcher
+- **college_data.py** - College information
+- **index.html** - Front-end building
 
 ## Features
 
@@ -37,7 +39,7 @@ college-admissions-simulator/
 4. Explore acceptance probabilities across universities
 5. Review personalized recommendations based on your profile
 
- 
+
 ### Prerequisites
 
 - Python 3.8+
@@ -56,6 +58,27 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
+### Troubleshooting
+
+- Merge errors (Git conflicts)
+  If you see:
+
+     <<<<<<< HEAD
+     =======
+     >>>>>>> branch-name
+
+  Delete these lines and keep the correct code.
+
+  - Flask not found
+    If you see:
+    
+      ModuleNotFoundError: No module named 'flask'
+
+    Run: pip install flask
+
+    
+   
 
 ## License
 
