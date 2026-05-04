@@ -793,7 +793,6 @@ COLLEGES = {
 
     },
     "University of California, Los Angeles": {
->>>>>>> b6807f7dcc266e20bc61127a78fd4931f21b3b1c
         "avg_sat_math": 0,
         "avg_sat_rw": 0,
         "avg_act": 0,
