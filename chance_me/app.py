@@ -196,6 +196,22 @@ def calculate_admission_chance(student_data, college_name):
         awards_score += AWARD_WEIGHTS.get(award['level'], 1)
     awards_score = min(awards_score / 14, 1)  # Hard to max out
 
+    spike_score = 0
+
+    # Awards spike
+    high_awards = sum(1 for a in student_data['awards'] if a.get('level') in ['national', 'international'])
+    
+    if any(a.get('level') == 'international' for a in student_data['awards']):
+        spike_score += 1
+    elif high_awards >= 2:
+        spike_score += 1
+
+    # Extracurricular spike
+    for ec in student_data['extracurriculars']:
+        if ec.get('years', 0) >= 3 and ec.get('hours', 0) >= 10:
+            spike_score += 1
+            break
+
     total_weight = max(
         1,
         weights.get('academic_weight', 1) +
@@ -208,6 +224,11 @@ def calculate_admission_chance(student_data, college_name):
         awards_score * weights['misc_weight']
     ) / total_weight
 
+    # Consider potential spikes 
+    if spike_score >= 1:
+        base_chance *= 1.15
+    if spike_score >= 2:
+        base_chance *= 1.25
     # Academic gate: penalize applicants below the school's academic profile
     raw_avg_sat = college.get('avg_sat')
 
@@ -284,7 +305,7 @@ def calculate_admission_chance(student_data, college_name):
     final_chance = min(final_chance, max_chance)
 
     return round(max(1, final_chance), 1)
-
+    
 
 def identify_strengths_weaknesses(student_data, college_name):
     college = COLLEGES.get(college_name, {})
@@ -372,6 +393,7 @@ def identify_strengths_weaknesses(student_data, college_name):
     elif student_data['rigor'] <= 4:
         weaknesses.append("Course rigor is low — selective schools expect the most challenging available curriculum")
 
+    # Misc. factors
     if student_data.get('legacy'):
         strengths.append("Legacy status provides a modest admissions advantage")
     if student_data.get('athlete'):
@@ -382,7 +404,18 @@ def identify_strengths_weaknesses(student_data, college_name):
         strengths.append("Underrepresented minority status contributes to institutional diversity goals")
     if student_data.get('faculty_child'):
         strengths.append("Child of faculty/staff may receive preferential consideration")
+   
+    # Spike factors
+    if any(a.get('level') == 'international' for a in student_data['awards']):
+        strengths.append("Exceptional achievement: international-level recognition (spike)")
+    elif high_awards >= 2:
+        strengths.append("Strong award profile at a national level (spike)")
 
+    for ec in student_data['extracurriculars']:
+        if ec.get('years', 0) >= 3 and ec.get('hours', 0) >= 10:
+            strengths.append("Deep extracurricular commitment shows a strong spike in involvement")
+            break
+            
     return strengths, weaknesses
 
 
