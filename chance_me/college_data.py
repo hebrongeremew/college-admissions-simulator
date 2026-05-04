@@ -516,7 +516,6 @@ COLLEGES = {
         "preferences": {
             "leadership": 1.25,
             "volunteering": 1.20,
-    
         }
     },
     "University of Notre Dame": {
