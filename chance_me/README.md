@@ -64,8 +64,8 @@ python main.py
 - Merge errors (Git conflicts)
   If you see:
 
-     ```<<<<<<< HEAD 
-     =======
+     ```<<<<<<< HEAD OR
+     =======  OR
      >>>>>>> branch-name
      ```
   Delete these lines and keep the correct code.
