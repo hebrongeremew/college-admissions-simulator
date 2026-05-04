@@ -34,10 +34,12 @@ college-admissions-simulator/
 ## Getting Started
 
 1. Clone the repository and install dependencies (see Installation section)
-2. Run `python main.py` to launch the application
-3. Enter your academic profile (GPA, test scores)
-4. Explore acceptance probabilities across universities
-5. Review personalized recommendations based on your profile
+2. Navigate to the project folder by running cd chance_me 
+4. Run `python3 app.py` to launch the application
+5. Open app through website (through ports section)
+6. Enter your academic profile (GPA, test scores)
+7. Explore acceptance probabilities across universities
+8. Review personalized feedback based on your profile
 
 
 ### Prerequisites
