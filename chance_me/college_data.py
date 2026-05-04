@@ -313,7 +313,6 @@ COLLEGES = {
             "sports": 1.15,
             "research": 1.10
         }
-
     },
     "University of Chicago": {
         "avg_sat_math": 790,
@@ -386,7 +385,6 @@ COLLEGES = {
             "research": 1.10
         }
     },
-
     "California Institute of Technology": {
         "avg_sat_math": 795,
         "avg_sat_rw": 750,
@@ -409,7 +407,6 @@ COLLEGES = {
             "academic": 1.30,
         }
     },
-
     "Johns Hopkins University": {
         "avg_sat_math": 790,
         "avg_sat_rw": 760,
@@ -432,7 +429,6 @@ COLLEGES = {
             "volunteering": 1.20
         }
     },
-
     "Rice University": {
         "avg_sat_math": 785,
         "avg_sat_rw": 755,
@@ -455,7 +451,6 @@ COLLEGES = {
             "leadership": 1.15
         }
     },
-
     "Vanderbilt University": {
         "avg_sat_math": 790,
         "avg_sat_rw": 750,
@@ -478,6 +473,7 @@ COLLEGES = {
             "volunteering": 1.20,
             "community": 1.20
         }
+    },
     "University of California, Los Angeles": {
         "avg_sat_math": 0,
         "avg_sat_rw": 0,
@@ -566,9 +562,5 @@ COLLEGES = {
             "leadership": 1.25,
             "volunteering": 1.20,
         }
-
     }
-
 }
-
-
