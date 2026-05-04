@@ -43,6 +43,8 @@ document.getElementById('add-activity').addEventListener('click', function() {
             <option value="Volunteering">Volunteering</option>
             <option value="Research">Research</option>
             <option value="Clubs">Clubs</option>
+            <option value="Job">Job</option>
+            <option value="Internship">Internship</option>
         </select>
         <div class="activity-details">
             <input type="number" class="activity-years" placeholder="Years" min="0" max="4" step="1">
@@ -63,7 +65,7 @@ document.getElementById('add-award').addEventListener('click', function() {
         <select class="award-level">
             <option value="local">🏅 Local</option>
             <option value="regional">🏆 Regional</option>
-            <option value="national">🇺🇸 National</option>
+            <option value="national">⭐ National</option>
             <option value="international">🌍 International</option>
         </select>
         <button type="button" class="remove-btn">🗑️</button>
