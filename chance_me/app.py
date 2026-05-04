@@ -379,12 +379,18 @@ def identify_strengths_weaknesses(student_data, college_name):
     elif len(student_data['awards']) == 0:
         weaknesses.append("No awards listed — competitive applicants typically have notable recognition")
 
-    if student_data['class_rank'] >= 95:
-        strengths.append(f"Outstanding class rank (top {100 - student_data['class_rank']}%)")
-    elif student_data['class_rank'] >= 85:
-        strengths.append(f"Strong class rank (top {100 - student_data['class_rank']}%)")
-    elif student_data['class_rank'] < 75:
-        weaknesses.append(f"Class rank (top {100 - student_data['class_rank']}%) is below what most selective schools expect")
+    rank = int(student_data['class_rank'])
+
+    if rank == 99:
+        strengths.append("Exceptional class rank (top 1%)")
+    elif rank == 95:
+        strengths.append("Outstanding class rank (top 5%)")
+    elif rank == 90:
+        strengths.append("Strong class rank (top 10%)")
+    elif rank == 75:
+        strengths.append("Above-average class rank (top 25%)")
+    elif rank == 50:
+        weaknesses.append("Class rank (bottom 50%) may be a concern for highly selective schools")
 
     if student_data['rigor'] >= 9:
         strengths.append("Exceptionally rigorous course load (multiple AP/IB courses)")
