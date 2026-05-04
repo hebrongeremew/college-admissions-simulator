@@ -638,8 +638,6 @@ COLLEGES = {
             "community": 1.20
         }
 
-    },
-    "University of California, Los Angeles": {
         "avg_sat_math": 0,
         "avg_sat_rw": 0,
         "avg_act": 0,
@@ -731,6 +729,7 @@ COLLEGES = {
             "volunteering": 1.20,
             "community": 1.20
         }
+
     }
 
 }
