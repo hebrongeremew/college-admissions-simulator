@@ -639,7 +639,7 @@ COLLEGES = {
         }
 
     },
-    "University of California: Los Angeles": {
+    "University of California, Los Angeles": {
         "avg_sat_math": 0,
         "avg_sat_rw": 0,
         "avg_act": 0,
