@@ -66,7 +66,6 @@ COLLEGES = {
         "preferences": {
             "research": 1.20,
             "leadership": 1.15,
-            "entrepreneurship": 1.25,
             "sports": 1.10,
             "academic": 1.10
         }
@@ -238,7 +237,6 @@ COLLEGES = {
         "preferences": {
             "leadership": 1.30,
             "internships": 1.30,
-            "entrepreneurship": 1.25,
             "business": 1.25,
             "research": 1.05
         }
@@ -264,8 +262,7 @@ COLLEGES = {
             "arts": 1.20,
             "volunteering": 1.20,
             "leadership": 1.10,
-            "research": 1.10,
-            "nontraditional": 1.25
+            "research": 1.10
         }
     },
     "Cornell University": {
@@ -288,7 +285,6 @@ COLLEGES = {
         "preferences": {
             "research": 1.20,
             "academic": 1.20,
-            "engineering": 1.25,
             "leadership": 1.10,
             "volunteering": 1.05,
             "arts": 1.00
@@ -315,8 +311,6 @@ COLLEGES = {
             "leadership": 1.25,
             "volunteering": 1.20,
             "sports": 1.15,
-            "outdoors": 1.30,
-            "community": 1.25,
             "research": 1.10
         }
 
@@ -342,7 +336,7 @@ COLLEGES = {
             "academic": 1.30,
             "research": 1.20,
             "leadership": 1.10,
-            "writing": 1.25
+            "art": 1.25
         }
     },
     "Duke University": {
@@ -387,7 +381,6 @@ COLLEGES = {
         "sat_math_weight": 0.50,
         "sat_rw_weight": 0.50,
         "preferences": {
-            "journalism": 1.25,
             "arts": 1.20,
             "leadership": 1.15,
             "research": 1.10
@@ -414,7 +407,6 @@ COLLEGES = {
         "preferences": {
             "research": 1.35,
             "academic": 1.30,
-            "math": 1.35
         }
     },
 
@@ -437,7 +429,6 @@ COLLEGES = {
         "sat_rw_weight": 0.45,
         "preferences": {
             "research": 1.30,
-            "health": 1.30,
             "volunteering": 1.20
         }
     },
@@ -461,7 +452,6 @@ COLLEGES = {
         "sat_rw_weight": 0.48,
         "preferences": {
             "research": 1.15,
-            "community": 1.25,
             "leadership": 1.15
         }
     },
@@ -508,7 +498,6 @@ COLLEGES = {
         "preferences": {
             "leadership": 1.25,
             "volunteering": 1.20,
-            "community": 1.20
         }
     },
     "Carnegie Mellon University": {
@@ -531,7 +520,6 @@ COLLEGES = {
         "preferences": {
             "leadership": 1.25,
             "volunteering": 1.20,
-            "community": 1.20
     
         }
     },
@@ -555,7 +543,6 @@ COLLEGES = {
         "preferences": {
             "leadership": 1.25,
             "volunteering": 1.20,
-            "community": 1.20
         }
     },
     "Washington University in St. Louis": {
@@ -578,7 +565,6 @@ COLLEGES = {
         "preferences": {
             "leadership": 1.25,
             "volunteering": 1.20,
-            "community": 1.20
         }
 
     }
