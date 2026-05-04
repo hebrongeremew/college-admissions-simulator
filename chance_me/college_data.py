@@ -212,7 +212,7 @@ COLLEGES = {
         "preferences": {
             "research": 1.15,
             "leadership": 1.20,
-            "internships": 1.25,
+            "internship": 1.25,
             "volunteering": 1.10,
             "arts": 1.10
         }
@@ -236,7 +236,7 @@ COLLEGES = {
         "sat_rw_weight": 0.47,
         "preferences": {
             "leadership": 1.30,
-            "internships": 1.30,
+            "internship": 1.30,
             "business": 1.25,
             "research": 1.05
         }
@@ -259,7 +259,7 @@ COLLEGES = {
         "sat_math_weight": 0.47,
         "sat_rw_weight": 0.53,
         "preferences": {
-            "arts": 1.20,
+            "art": 1.20,
             "volunteering": 1.20,
             "leadership": 1.10,
             "research": 1.10
@@ -287,7 +287,7 @@ COLLEGES = {
             "academic": 1.20,
             "leadership": 1.10,
             "volunteering": 1.05,
-            "arts": 1.00
+            "art": 1.00
         }
     },
     "Dartmouth College": {
@@ -379,7 +379,7 @@ COLLEGES = {
         "sat_math_weight": 0.50,
         "sat_rw_weight": 0.50,
         "preferences": {
-            "arts": 1.20,
+            "art": 1.20,
             "leadership": 1.15,
             "research": 1.10
         }
