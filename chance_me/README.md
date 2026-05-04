@@ -64,16 +64,7 @@ python main.py
 - If flask not found, run 'pip install flask'
 - Ensure you are in the chance_me folder (run cd chance_me)
 - Merge errors (Git conflicts)
-  If you see the following lines, delete them:
-
-    ```<<<<<<< HEAD
-    ```
-    OR
-    ``` >>>>>>> branch-name
-    ```
-    OR
-    ``` =======
-    ```
+  If you see lines with lots of `<`, `>`, or `=` (like merge conflict markers), delete them and keep the correct code.
 
     
    
