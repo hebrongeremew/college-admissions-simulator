@@ -50,7 +50,7 @@ REALISTIC_MAX_CHANCE = {
     "Vanderbilt University": 75.0,
     "University of California, Berkeley": 80.0,
     "University of Michigan": 85.0,
-    "University of California: Los Angeles": 80.0,
+    "University of California, Los Angeles": 80.0,
     "Carnegie Mellon University": 80.0,
     "University of Notre Dame": 80.0,
     "Washington University in St. Louis": 80.0
@@ -214,7 +214,7 @@ def calculate_admission_chance(student_data, college_name):
     avg_sat = raw_avg_sat if raw_avg_sat > 0 else None
     avg_gpa = college.get("avg_gpa", 3.0)
     
-    if avg_sat > 0 and total_sat > 0:
+    if avg_sat and total_sat > 0:
         sat_ratio = total_sat / avg_sat
     else:
         sat_ratio = 1.0  # no SAT penalty for test-blind/test-free schools
@@ -310,7 +310,7 @@ def identify_strengths_weaknesses(student_data, college_name):
                 strengths.append(f"ACT score ({act}) meets or exceeds {college_name}'s average equivalent ({avg_act_equivalent:.0f})")
             else:
                 weaknesses.append(f"ACT score ({act}) is below {college_name}'s average equivalent ({avg_act_equivalent:.0f})")
-        elif total_sat and avg_sat> 0:
+        elif total_sat > 0 and avg_sat:
             if total_sat >= avg_sat:
                 strengths.append(f"SAT total ({total_sat}) meets or exceeds {college_name} average ({avg_sat})")
             else:
