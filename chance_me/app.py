@@ -21,7 +21,7 @@ CATEGORY_MAP = {
     "Arts": "arts",
     "Volunteering": "volunteering",
     "Research": "research",
-    "Clubs": "clubs"
+    "Clubs": "clubs",
     "Job": "job",
     "Internship": "internship"
 }
