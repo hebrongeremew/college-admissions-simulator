@@ -69,4 +69,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
     - https://www.zenithprepacademy.com/college-admissions/#princeton
 
 - AI help
-    _ claude inline editor
+    _ claude inline editor (for HTML formatting and the formatting of repetive statements in app.py)
