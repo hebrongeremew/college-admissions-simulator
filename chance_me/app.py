@@ -316,7 +316,7 @@ def identify_strengths_weaknesses(student_data, college_name):
             else:
                 weaknesses.append(f"SAT total ({total_sat}) is below {college_name} average ({avg_sat})")
 
-        if sat_math > 0:
+        if sat_math > 0 and avg_sat:
             if sat_math < 600:
                 weaknesses.append("SAT Math is below the competitive range for selective schools")
             elif sat_math < 700:
@@ -326,7 +326,7 @@ def identify_strengths_weaknesses(student_data, college_name):
             else:
                 strengths.append(f"SAT Math ({sat_math}) is competitive")
 
-        if sat_rw > 0:
+        if sat_rw > 0 and avg_sat:
             if sat_rw < 600:
                 weaknesses.append("SAT Reading/Writing is below the competitive range for selective schools")
             elif sat_rw < 700:
