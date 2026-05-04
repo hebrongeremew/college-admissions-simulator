@@ -9,7 +9,7 @@ app = Flask(__name__)
 EXTRACURRICULAR_WEIGHTS = {
     "Leadership": 3, "Academic": 2, "Sports": 3,
     "Music": 2, "Arts": 2, "Volunteering": 2,
-    "Research": 3, "Clubs": 1 "Job": 2,
+    "Research": 3, "Clubs": 1, "Job": 2,
     "Internship": 3
 }
 # Map display category names to database preference keys for college-specific activity matching
