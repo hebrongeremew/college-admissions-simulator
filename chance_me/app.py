@@ -100,11 +100,13 @@ def calculate_admission_chance(student_data, college_name):
     else:
         avg_sat = None  # test-blind / no SAT data
 
-    if exam_mode == 'sat':
+    if avg_sat and exam_mode == 'sat':
         exam_quality = 1 - max(0.0, min(1.0, (avg_sat - total_sat) / 400))
-    else:
+    elif avg_sat and exam_mode == 'act':
         avg_act_equivalent = avg_sat / 1600 * 36
         exam_quality = 1 - max(0.0, min(1.0, (avg_act_equivalent - act) / 10))
+    else:
+        exam_quality = 1.0
 
     # Stricter score penalty thresholds than before
     if exam_mode == 'sat':
@@ -137,7 +139,7 @@ def calculate_admission_chance(student_data, college_name):
     # Multi-flag academic penalty system — being below average on several dimensions
     # compounds badly, as it does in real admissions
     low_academic_flags = 0
-    if exam_mode == 'sat':
+    if exam_mode == 'sat' and avg_sat:
         if total_sat < avg_sat * 0.92:
             low_academic_flags += 1
         if total_sat < avg_sat * 0.85:
@@ -146,7 +148,7 @@ def calculate_admission_chance(student_data, college_name):
             low_academic_flags += 1
         if sat_rw_score < 0.50:
             low_academic_flags += 1
-    elif exam_mode == 'act':
+    elif exam_mode == 'act' and avg_sat:
         avg_act_equivalent = avg_sat / 1600 * 36
         if act < avg_act_equivalent * 0.92:
             low_academic_flags += 1
@@ -204,7 +206,12 @@ def calculate_admission_chance(student_data, college_name):
     ) / total_weight
 
     # Academic gate: penalize applicants below the school's academic profile
-    avg_sat = college.get("avg_sat_math", 0) + college.get("avg_sat_rw", 0)
+    raw_avg_sat = college.get('avg_sat')
+
+    if raw_avg_sat is None:
+        raw_avg_sat = college.get('avg_sat_math', 0) + college.get('avg_sat_rw', 0)
+    
+    avg_sat = raw_avg_sat if raw_avg_sat > 0 else None
     avg_gpa = college.get("avg_gpa", 3.0)
     
     if avg_sat > 0 and total_sat > 0:
@@ -239,13 +246,18 @@ def calculate_admission_chance(student_data, college_name):
         academic_gate *= 0.80
     
     base_chance *= academic_gate
+
+    if academic_score < 0.30:
+        base_chance *= 0.35
+    elif academic_score < 0.45:
+        base_chance *= 0.60
     
     # Convert the college's selectivity into a baseline acceptance percentage
     selectivity = college.get("selectivity", 0.10)
     baseline_chance = selectivity * 100
     
     # Stronger applicants rise above the baseline rate
-    strength_multiplier = 1 + (base_chance * 5.0)
+    strength_multiplier = 1 + (base_chance * 2.5)
     
     final_chance = baseline_chance * strength_multiplier
 
@@ -292,7 +304,7 @@ def identify_strengths_weaknesses(student_data, college_name):
         else:
             avg_sat = None
 
-        if act > 0:
+        if act > 0 and avg_sat:
             avg_act_equivalent = avg_sat / 1600 * 36
             if act >= avg_act_equivalent:
                 strengths.append(f"ACT score ({act}) meets or exceeds {college_name}'s average equivalent ({avg_act_equivalent:.0f})")
@@ -305,16 +317,20 @@ def identify_strengths_weaknesses(student_data, college_name):
                 weaknesses.append(f"SAT total ({total_sat}) is below {college_name} average ({avg_sat})")
 
         if sat_math > 0:
-            if sat_math < 500:
-                weaknesses.append("SAT Math is below the competitive threshold for selective programs")
+            if sat_math < 600:
+                weaknesses.append("SAT Math is below the competitive range for selective schools")
+            elif sat_math < 700:
+                weaknesses.append(f"SAT Math ({sat_math}) is decent, but below the typical range for many top schools")
             elif sat_math >= 750:
                 strengths.append(f"SAT Math ({sat_math}) is exceptionally strong")
             else:
                 strengths.append(f"SAT Math ({sat_math}) is competitive")
 
         if sat_rw > 0:
-            if sat_rw < 500:
-                weaknesses.append("SAT Reading/Writing is below the competitive threshold for selective programs")
+            if sat_rw < 600:
+                weaknesses.append("SAT Reading/Writing is below the competitive range for selective schools")
+            elif sat_rw < 700:
+                weaknesses.append(f"SAT Reading/Writing ({sat_rw}) is decent, but below the typical range for many top schools")
             elif sat_rw >= 740:
                 strengths.append(f"SAT Reading/Writing ({sat_rw}) is exceptionally strong")
             else:
@@ -417,3 +433,4 @@ def evaluate():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=5000)
+
