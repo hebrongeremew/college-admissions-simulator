@@ -424,6 +424,46 @@ def identify_strengths_weaknesses(student_data, college_name):
             
     return strengths, weaknesses
 
+def strength_priority(s): # Orders strenghts by importance 
+    s = s.lower()
+
+    if "recruited athlete" in s:
+        return 0
+    elif "spike" in s or "international" in s or "national level" in s:
+        return 1
+    elif "gpa" in s or "class rank" in s or "rigor" in s:
+        return 2
+    elif "sat" in s or "act" in s:
+        return 3
+    elif "first-generation" in s or "underrepresented" in s or "legacy" in s or "faculty" in s:
+        return 4
+    elif "extracurricular profile" in s or "award record" in s:
+        return 5
+    else:
+        return 6
+        
+strengths.sort(key=strength_priority)
+
+def weakness_priority(w): 
+    w = w.lower()
+
+    if "gpa" in w or "sat" in w or "act" in w or "class rank" in w:
+        return 0
+
+    elif "rigor" in w:
+        return 1
+
+    elif "extracurricular" in w:
+        return 2
+
+    elif "award" in w:
+        return 3
+        
+    else:
+        return 4
+
+weaknesses.sort(key=weakness_priority)
+    
 
 @app.route('/')
 def index():
@@ -462,8 +502,8 @@ def evaluate():
             results.append({
                 'college': college,
                 'chance': chance,
-                'strengths': strengths[:3],
-                'weaknesses': weaknesses[:3]
+                'strengths': strengths[:5],
+                'weaknesses': weaknesses[:5]
             })
 
         results.sort(key=lambda x: x['chance'], reverse=True)
