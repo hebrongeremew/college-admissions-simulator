@@ -400,7 +400,7 @@ def identify_strengths_weaknesses(student_data, college_name):
                 strengths.append(f"SAT Reading/Writing ({sat_rw}) is competitive")
 
         if act > 0 and act < 28:
-            weaknesses.append(f"ACT composite ({act}) is below the typical range for this school")
+            weaknesses.append(f"ACT composite ({act}) is below the typical range for selective schools")
 
         avg_gpa = college.get('avg_gpa', 3.0)
         if student_data['gpa'] >= avg_gpa:
@@ -408,15 +408,15 @@ def identify_strengths_weaknesses(student_data, college_name):
         else:
             weaknesses.append(f"GPA ({student_data['gpa']}) is below {college_name} average ({avg_gpa})")
 
-    if len(student_data['extracurriculars']) >= 4:
+    if len(student_data['extracurriculars']) >= 5:
         strengths.append(f"Strong extracurricular profile ({len(student_data['extracurriculars'])} activities)")
-    elif len(student_data['extracurriculars']) <= 1:
-        weaknesses.append("Thin extracurricular profile — top schools expect depth and sustained commitment")
+    elif len(student_data['extracurriculars']) <= 3:
+        weaknesses.append("Thin extracurricular profile. Selective schools expect significant involvement and sustained commitment.")
 
     if len(student_data['awards']) >= 3:
         strengths.append(f"Impressive award record ({len(student_data['awards'])} honors)")
     elif len(student_data['awards']) == 0:
-        weaknesses.append("No awards listed — competitive applicants typically have notable recognition")
+        weaknesses.append("No awards listed. Competitive applicants typically have notable recognition.")
 
     rank = int(student_data['class_rank'])
 
@@ -436,7 +436,7 @@ def identify_strengths_weaknesses(student_data, college_name):
     elif student_data['rigor'] >= 7:
         strengths.append("Strong course rigor")
     elif student_data['rigor'] <= 4:
-        weaknesses.append("Course rigor is low — selective schools expect the most challenging available curriculum")
+        weaknesses.append("Course rigor is low. Selective schools expect the most challenging available curriculum")
 
     # Misc. factors
     if student_data.get('legacy'):
