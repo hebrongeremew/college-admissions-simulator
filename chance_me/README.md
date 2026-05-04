@@ -61,21 +61,15 @@ python main.py
 
 ### Troubleshooting
 
+- If flask not found, run 'pip install flask'
+- Ensure you are in the chance_me folder (run cd chance_me)
 - Merge errors (Git conflicts)
-  If you see:
+  If you see the following lines, delete them:
 
      ```<<<<<<< HEAD OR
      =======  OR
      >>>>>>> branch-name
      ```
-  Delete these lines and keep the correct code.
-
-  - Flask not found
-    If you see:
-    
-      ModuleNotFoundError: No module named 'flask'
-
-    Run: pip install flask
 
     
    
