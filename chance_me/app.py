@@ -306,6 +306,45 @@ def calculate_admission_chance(student_data, college_name):
 
     return round(max(1, final_chance), 1)
     
+def strength_priority(s): # Orders strenghts by importance 
+    s = s.lower()
+
+    if "recruited athlete" in s:
+        return 0
+    elif "spike" in s or "international" in s or "national level" in s:
+        return 1
+    elif "gpa" in s or "class rank" in s or "rigor" in s:
+        return 2
+    elif "sat" in s or "act" in s:
+        return 3
+    elif "first-generation" in s or "underrepresented" in s or "legacy" in s or "faculty" in s:
+        return 4
+    elif "extracurricular profile" in s or "award record" in s:
+        return 5
+    else:
+        return 6
+        
+
+
+def weakness_priority(w): 
+    w = w.lower()
+
+    if "gpa" in w or "sat" in w or "act" in w or "class rank" in w:
+        return 0
+
+    elif "rigor" in w:
+        return 1
+
+    elif "extracurricular" in w:
+        return 2
+
+    elif "award" in w:
+        return 3
+        
+    else:
+        return 4
+
+
 
 def identify_strengths_weaknesses(student_data, college_name):
     college = COLLEGES.get(college_name, {})
@@ -412,6 +451,11 @@ def identify_strengths_weaknesses(student_data, college_name):
         strengths.append("Child of faculty/staff may receive preferential consideration")
    
     # Spike factors
+    high_awards = sum(
+        1 for a in student_data['awards']
+        if a.get('level') in ['national', 'international']
+    )
+    
     if any(a.get('level') == 'international' for a in student_data['awards']):
         strengths.append("Exceptional achievement: international-level recognition (spike)")
     elif high_awards >= 2:
@@ -421,48 +465,13 @@ def identify_strengths_weaknesses(student_data, college_name):
         if ec.get('years', 0) >= 3 and ec.get('hours', 0) >= 10:
             strengths.append("Deep extracurricular commitment shows a strong spike in involvement")
             break
-            
+    
+    strengths.sort(key=strength_priority)
+    weaknesses.sort(key=weakness_priority)
+
     return strengths, weaknesses
 
-def strength_priority(s): # Orders strenghts by importance 
-    s = s.lower()
 
-    if "recruited athlete" in s:
-        return 0
-    elif "spike" in s or "international" in s or "national level" in s:
-        return 1
-    elif "gpa" in s or "class rank" in s or "rigor" in s:
-        return 2
-    elif "sat" in s or "act" in s:
-        return 3
-    elif "first-generation" in s or "underrepresented" in s or "legacy" in s or "faculty" in s:
-        return 4
-    elif "extracurricular profile" in s or "award record" in s:
-        return 5
-    else:
-        return 6
-        
-strengths.sort(key=strength_priority)
-
-def weakness_priority(w): 
-    w = w.lower()
-
-    if "gpa" in w or "sat" in w or "act" in w or "class rank" in w:
-        return 0
-
-    elif "rigor" in w:
-        return 1
-
-    elif "extracurricular" in w:
-        return 2
-
-    elif "award" in w:
-        return 3
-        
-    else:
-        return 4
-
-weaknesses.sort(key=weakness_priority)
     
 
 @app.route('/')
